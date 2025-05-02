@@ -106,6 +106,11 @@ All code used to further clean the GBIF observations, generate the NAIP image pa
 python src/deepbiosphere/Build_Data.py --dset_path data/occurrences/[name_of_dataset_from_gbif_download].csv --daset_id [what_you_want_to_call_the_dataset] --sep '\t' --year 2012 --state ca --threshold 500 --idCol gbifID --parallel 0
 ```
 
+# Podostemum ceratophyllum project-specific code
+```
+python src/deepbiosphere/src/deepbiosphere/Build_Data.py --dset_path /home/abedoya/deepbio/PEN_merged.csv --daset_id PA --sep '\t' --year 2019 --state pa --threshold 50 --idCol gbifID --parallel 0
+```
+
 ### What files are generated
 
 Running this command will generate a csv stored in your `paths.OCCS` directory that contains all the cleaned observations (`[what_you_want_to_call_the_dataset].csv`) and an associated metadata file (`[what_you_want_to_call_the_dataset]_metadata.json`). It will also create a directory in `paths.IMAGES` which hierarchically stores the paired NAIP image crops using the same file structure as many [NAIP imagery blobs](https://naipeuwest.blob.core.windows.net/naip/v002/ca/index.html). Each file in the directory maps to one NAIP tiff from the original imagery, and within these files are zipped numpy archives which contain the 4-band cropped images for each GBIF observation that fell within said tiff. Since GBIF observations are heterogeneously distributed, some files will only contain a few images while others will contain many. 
